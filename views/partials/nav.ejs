@@ -1,13 +1,24 @@
 <nav>
-
-    <div class="site-title">
-        <a href="/"><h1 class="font-bold">Moheb Ninja</h1></a>
-        <p>A Moheb's Mongoose</p>
+  <div>
+    <a href="/"><h1>Moheb's Blogs</h1></a>
+    <p>Moheb's Blogspot</p>
+  </div>
+  <div>
+    <div class="info">
+      <% if (user) { %>
+      <h3>Welcome, Moheb</h3>
+      <a href="/log-out" class="logbtn">Log Out</a>
+      <% }else{ %>
+      <a href="/log-in" class="logbtn">Log In</a>
+      <% } %>
     </div>
-
     <ul>
-        <li><a href="/">Blogs</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/blogs/create">New Blog</a></li>
+      <li><a href="/" class="link">Blogs</a></li>
+      <% if (!user) { %>
+      <li><a href="/sign-up" class="link">Sign Up</a></li>
+      <% } %>
+      <li><a href="/about" class="link">About</a></li>
+      <li><a href="/blogs/create" class="link">New Blog</a></li>
     </ul>
+  </div>
 </nav>

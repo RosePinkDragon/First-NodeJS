@@ -1,5 +1,10 @@
-<footer>
+<footer>Copyright &copy; Moheb's Blog 2021</footer>
+<script>
+  const links = document.querySelectorAll(".link");
 
-    Copyright &copy; Blog Moheb 2020
-
-</footer>
+  links.forEach((link) => {
+    if (link.attributes.href.value === window.location.pathname) {
+      link.classList.add("active");
+    }
+  });
+</script>

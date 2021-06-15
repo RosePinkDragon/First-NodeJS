@@ -1,0 +1,71 @@
+<html lang="en">
+  <%- include("./partials/header.ejs") %>
+
+  <body>
+    <%- include("./partials/nav.ejs") %>
+
+    <div class="create-blog content">
+      <form action="/blogs" method="POST">
+        <label for="title">Blog title:</label>
+        <input type="text" id="title" name="title" required />
+        <div class="title error"></div>
+        <label for="snippet">Blog snippet:</label>
+        <input type="text" id="snippet" name="snippet" required />
+        <div class="snippet error"></div>
+        <label for="body">Blog body:</label>
+        <textarea id="body" name="body" required></textarea>
+        <div class="body error"></div>
+        <div class="user error"></div>
+        <button>Submit</button>
+      </form>
+    </div>
+
+    <%- include("./partials/footer.ejs") %>
+    <script>
+      const form = document.querySelector("form");
+      const titleError = document.querySelector(".title.error");
+      const snippetError = document.querySelector(".snippet.error");
+      const bodyError = document.querySelector(".body.error");
+      const userError = document.querySelector(".user.error");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        //reset errors
+        titleError.textContent = "";
+        snippetError.textContent = "";
+        bodyError.textContent = "";
+        userError.textContent = "";
+
+        // get values
+        const title = form.title.value;
+        const snippet = form.snippet.value;
+        const body = form.body.value;
+
+        if (!title || !snippet || !body) {
+          bodyError.textContent = `Please Fill in all the Feilds!!`;
+        } else {
+          try {
+            const res = await fetch("/blogs", {
+              method: "POST",
+              body: JSON.stringify({ title, snippet, body }),
+              headers: { "Content-Type": "application/json" },
+            });
+            const data = await res.json();
+            console.log(data);
+            if (data.errors) {
+              titleError.textContent = data.errors.title;
+              snippetError.textContent = data.errors.snippet;
+              bodyError.textContent = data.errors.body;
+              userError.textContent = data.errors.user;
+            }
+            if (data.blog) {
+              location.assign("/blogs");
+            }
+          } catch (err) {
+            console.log(err);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
