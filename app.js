@@ -50,28 +50,6 @@ app.get("/about", (req, res) => {
 app.use("/blogs", blogRoutes);
 app.use(authRoutes);
 
-// cookies
-// app.get("/set-cookies", (req, res) => {
-//
-//**below is an example of setting cookies without a cookie-parser */
-// !!res.setHeader('Set-Cookie', 'newUser=true');
-
-//   res.cookie("newUser", false);
-//   res.cookie("isEmployee", true, {
-//     maxAge: 1000 * 60 * 60 * 24,
-//     httpOnly: true,
-//   });
-
-//   res.send("you got the cookies!");
-// });
-
-// app.get("/read-cookies", (req, res) => {
-//   const cookies = req.cookies;
-//   console.log(cookies.newUser);
-
-//   res.json(cookies);
-// });
-
 app.use((req, res) => {
   res.status(404).render("404", { title: "Lost Page" });
 });
