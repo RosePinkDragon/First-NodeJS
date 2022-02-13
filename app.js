@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const { checkUser } = require("./middleware/authMiddleware");
 const authRoutes = require("./routes/authRoutes");
 const blogRoutes = require("./routes/blogRoutes");
+const generateSiteMap = require("./seoUtils/generateSiteMap");
 
 require("dotenv").config();
 
@@ -25,7 +26,7 @@ mongoose
     useUnifiedTopology: true,
     useCreateIndex: true,
   })
-  .then((result) =>
+  .then(() =>
     app.listen(process.env.PORT, () => {
       console.log(`listening on port ${process.env.PORT}`);
     })
@@ -37,6 +38,8 @@ mongoose
 app.set("view engine", "ejs");
 
 app.get("*", checkUser);
+
+app.get("/sitemap.xml", generateSiteMap);
 
 app.get("/", (req, res) => {
   res.redirect("/blogs");
