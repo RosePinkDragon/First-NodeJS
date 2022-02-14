@@ -1,9 +1,26 @@
+<!DOCTYPE html>
 <html lang="en">
-  <%-include('./partials/header.ejs') %>
-
+  <head>
+    <%-include('./partials/header.ejs') %>
+  </head>
   <body>
     <%-include('./partials/nav.ejs') %>
-    <h1>Hey this page says something about me</h1>
+    <h2 style="text-align: center">Moheb Dabilkar</h2>
+    <h3 style="text-align: center">
+      I am lazy that's why i am fit for the job
+    </h3>
+    <h3 style="text-align: center; margin-bottom: 50px">
+      And i run cause i want to
+    </h3>
+    <div class="about-me">
+      <p>
+        Hi, I am a software developer with great experince in JavaScript and
+        it's frameworks. Along with that i also have experince with python
+        (Flask). I have a good idea about DB's and devops and a meh with PHP,
+        SEO, low level languages and other stuff. I am always ready the
+        learning/working enviroment.
+      </p>
+    </div>
     <%- include('./partials/footer.ejs') %>
   </body>
 </html>
