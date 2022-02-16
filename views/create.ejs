@@ -8,7 +8,7 @@
     <%- include("./partials/nav.ejs") %>
 
     <div class="create-blog content">
-      <form action="/blogs" method="POST">
+      <form action="/blog" method="POST">
         <label for="title">Blog title:</label>
         <input type="text" id="title" name="title" required />
         <div class="title error"></div>
@@ -48,7 +48,7 @@
           bodyError.textContent = `Please Fill in all the Feilds!!`;
         } else {
           try {
-            const res = await fetch("/blogs", {
+            const res = await fetch("/blog", {
               method: "POST",
               body: JSON.stringify({ title, snippet, body }),
               headers: { "Content-Type": "application/json" },
@@ -62,7 +62,7 @@
               userError.textContent = data.errors.user;
             }
             if (data.blog) {
-              location.assign("/blogs");
+              location.assign("/");
             }
           } catch (err) {
             console.log(err);
