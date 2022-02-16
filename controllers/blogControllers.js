@@ -57,7 +57,6 @@ const blog_create_get = (req, res) => {
 
 const blog_create_post = (req, res) => {
   const token = req.cookies.jwt;
-
   if (token) {
     jwt.verify(token, process.env.SECRET, async (err, decodedToken) => {
       if (err) {
@@ -88,7 +87,7 @@ const blog_create_post = (req, res) => {
 const blog_delete = (req, res) => {
   const id = req.params.id;
   Blog.findByIdAndDelete(id)
-    .then((result) => {
+    .then(() => {
       res.json({ redirect: "/blogs" });
     })
     .catch((err) => {

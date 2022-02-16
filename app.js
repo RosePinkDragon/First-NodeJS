@@ -37,6 +37,11 @@ mongoose
 
 app.set("view engine", "ejs");
 
+app.get("*", (req, res, next) => {
+  //add to the canonical url
+  res.locals.cannonicalUrl = process.env.HOST_URL + req.originalUrl;
+  next();
+});
 app.get("*", checkUser);
 
 app.get("/sitemap.xml", generateSiteMap);
@@ -46,6 +51,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/about", (req, res) => {
+  console.log(req.url);
   res.render("about", { title: "About Page" });
 });
 
