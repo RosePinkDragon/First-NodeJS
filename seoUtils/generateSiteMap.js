@@ -14,8 +14,6 @@ const generateSiteMap = async (req, res) => {
   var date = new Date();
   const isTimedOut = date - new Date(sitemapData.createdOn) > THIRTY_MIN;
 
-  console.log(isTimedOut);
-
   res.header("Content-Type", "application/xml");
   res.header("Content-Encoding", "gzip");
   // if we have a cached entry send it
@@ -33,10 +31,9 @@ const generateSiteMap = async (req, res) => {
     const blogs = await Blog.find().select("_id");
     // pipe your entries or directly write them.
     smStream.write({ url: "/", changefreq: "daily", priority: 0.7 });
-    smStream.write({ url: "/blogs", changefreq: "daily", priority: 0.7 });
     blogs.forEach(({ _id }) => {
       smStream.write({
-        url: `/blogs/${_id}`,
+        url: `/blog/${_id}`,
         changefreq: "monthly",
         priority: 0.3,
       });

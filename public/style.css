@@ -83,6 +83,7 @@ footer {
   top: 50%;
   right: 0;
   width: fit-content;
+  width: -moz-fit-content;
   max-width: 30px;
   border-radius: 5px;
   padding: 8px;
@@ -132,6 +133,7 @@ textarea {
 }
 button {
   width: fit-content;
+  width: -moz-fit-content;
   display: flex;
   justify-content: center;
   margin: 20px auto 0px;
@@ -171,4 +173,13 @@ div.about-me {
   justify-content: center;
   align-items: center;
   max-width: 50ch;
+}
+
+img.lost-404 {
+  max-width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px auto 20px;
+  align-items: center;
 }
