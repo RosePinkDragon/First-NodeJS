@@ -6,6 +6,7 @@ const { checkUser } = require("./middleware/authMiddleware");
 const authRoutes = require("./routes/authRoutes");
 const blogRoutes = require("./routes/blogRoutes");
 const generateSiteMap = require("./seoUtils/generateSiteMap");
+const { blog_index } = require("./controllers/blogControllers");
 
 require("dotenv").config();
 
@@ -39,18 +40,16 @@ app.set("view engine", "ejs");
 
 app.get("*", checkUser);
 
-app.get("/sitemap.xml", generateSiteMap);
+app.get("/sitemap", generateSiteMap);
 
-app.get("/", (req, res) => {
-  res.redirect("/blogs");
-});
+app.get("/", blog_index);
 
 app.get("/about", (req, res) => {
   res.render("about", { title: "About Page" });
 });
 
 // ** blog Routes
-app.use("/blogs", blogRoutes);
+app.use("/blog", blogRoutes);
 app.use(authRoutes);
 
 app.use((req, res) => {

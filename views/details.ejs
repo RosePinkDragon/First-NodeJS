@@ -17,7 +17,6 @@
         data-doc="<%= blog._id %>"
         src="/images/trash.svg"
         alt="Guess Has Deleted Itself?"
-        style=""
       />
     </div>
 
@@ -26,7 +25,7 @@
     <script>
       const trashcan = document.querySelector("img.delete");
       trashcan.addEventListener("click", (e) => {
-        const endpoint = `/blogs/${trashcan.dataset.doc}`;
+        const endpoint = `/blog/${trashcan.dataset.doc}`;
         fetch(endpoint, {
           method: "DELETE",
         })
